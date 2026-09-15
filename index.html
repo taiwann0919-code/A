@@ -1,0 +1,1736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日語會話二下｜予定変更の許可を求める・手伝いを申し出る</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-soft: #eff6ff;
+      --accent: #f97316;
+      --chen-bg: #e0f2fe;
+      --chen-border: #7dd3fc;
+      --suzuki-bg: #fef3c7;
+      --suzuki-border: #fde68a;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --success: #10b981;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: #e2e8f0;
+      padding: 6px;
+      border-radius: var(--radius);
+    }
+
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Control Panel */
+    .panel {
+      background: var(--card-bg);
+      padding: 18px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      margin-bottom: 20px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .select-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .scenario-desc {
+      margin-top: 14px;
+      padding: 12px;
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    /* Dialogue List */
+    .dialogue-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .scene-divider {
+      text-align: center;
+      margin: 24px 0 10px;
+      position: relative;
+    }
+
+    .scene-divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: #cbd5e1;
+      z-index: 1;
+    }
+
+    .scene-divider span {
+      background: var(--bg);
+      position: relative;
+      z-index: 2;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .bubble-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+    }
+
+    .bubble-wrapper.chen {
+      flex-direction: row;
+    }
+
+    .bubble-wrapper.suzuki {
+      flex-direction: row-reverse;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .chen .avatar {
+      background: #0284c7;
+      color: white;
+    }
+
+    .suzuki .avatar {
+      background: #d97706;
+      color: white;
+    }
+
+    .bubble-card {
+      max-width: 78%;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: white;
+      border: 1.5px solid transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    .chen .bubble-card {
+      background: var(--chen-bg);
+      border-color: var(--chen-border);
+      border-top-left-radius: 4px;
+    }
+
+    .suzuki .bubble-card {
+      background: var(--suzuki-bg);
+      border-color: var(--suzuki-border);
+      border-top-right-radius: 4px;
+    }
+
+    .bubble-text {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .bubble-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .btn-action {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+
+    .btn-action:hover {
+      background: #f1f5f9;
+      transform: translateY(-1px);
+    }
+
+    .btn-action.mic.recording {
+      background: #ef4444;
+      color: white;
+      border-color: #ef4444;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    .score-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .score-badge.high { display: inline-block; background: #dcfce7; color: #15803d; }
+    .score-badge.medium { display: inline-block; background: #fef9c3; color: #854d0e; }
+    .score-badge.low { display: inline-block; background: #fee2e2; color: #991b1b; }
+
+    /* Highlight Active Speaking Bubble */
+    .bubble-wrapper.current-turn .bubble-card {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
+    }
+
+    /* Patterns & Evaluation tab */
+    .pattern-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .pattern-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      border-bottom: 1.5px solid #f1f5f9;
+      padding-bottom: 4px;
+    }
+
+    .pattern-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 0.92rem;
+    }
+
+    .table-eval {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .table-eval th, .table-eval td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.9rem;
+    }
+
+    .table-eval th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .rating-options {
+      display: flex;
+      gap: 8px;
+    }
+
+    .rating-label {
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>日語會話二下『会話に挑戦（中級前期）応用編』</h1>
+  <p>單元 12・15 予定変更の許可を求める／手伝いを申し出る</p>
+</header>
+
+<div class="container">
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('dialogue')">💬 互動對話練習</button>
+    <button class="tab-btn" onclick="switchTab('patterns')">🔑 關鍵句型集</button>
+    <button class="tab-btn" onclick="switchTab('rubric')">📝 自我檢核表 (Can-Do)</button>
+  </div>
+
+  <!-- TAB 1: 對話練習區 -->
+  <div id="tab-dialogue">
+    <div class="panel">
+      <div class="control-row">
+        <div class="select-group">
+          <label>情境劇本：</label>
+          <select id="scenarioSelect" onchange="loadScenario()">
+            <option value="basic">基本版：配音練習 ＋ 九份</option>
+            <option value="appA">應用 A：地震防災發表 ＋ 北投溫泉</option>
+            <option value="appB">應用 B：朗讀劇籌備 ＋ 貓空纜車</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <label>練習模式：</label>
+          <select id="roleSelect" onchange="changeRole()">
+            <option value="listen">🎧 聆聽與跟讀模式 (全部播放)</option>
+            <option value="陳">🙋 我扮演 陳さん (對方扮演 鈴木)</option>
+            <option value="鈴木">🙋 我扮演 鈴木さん (對方扮演 陳)</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <label>語速：</label>
+          <input type="range" id="rateRange" min="0.7" max="1.2" step="0.1" value="1.0" oninput="updateRate(this.value)">
+          <span id="rateLabel">1.0x</span>
+        </div>
+      </div>
+
+      <div class="scenario-desc" id="scenarioSummary">
+        載入中...
+      </div>
+    </div>
+
+    <!-- 對話內容 -->
+    <div class="dialogue-box" id="dialogueBox"></div>
+  </div>
+
+  <!-- TAB 2: 關鍵句型庫 -->
+  <div id="tab-patterns" style="display: none;">
+    <div class="pattern-card">
+      <div class="pattern-title">2-1 予定変更の許可を求める表現（改期請求）</div>
+      <div class="pattern-item">
+        <span>【前置き】今、少し話してもいいですか。</span>
+        <button class="btn-action" onclick="speakText('今、少し話してもいいですか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【前置き】ちょっとお願いがあります。</span>
+        <button class="btn-action" onclick="speakText('ちょっとお願いがあります。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【理由】実は、〜が入ってしまったんです。</span>
+        <button class="btn-action" onclick="speakText('実は、用事が入ってしまったんです。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【依頼】〜を〜に変更させてもらえませんか。</span>
+        <button class="btn-action" onclick="speakText('相談の日にちを金曜日に変更させてもらえませんか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【配慮】こちらの都合で申し訳ないんですが…</span>
+        <button class="btn-action" onclick="speakText('こちらの都合で申し訳ないんですが、')">🔊 示範</button>
+      </div>
+    </div>
+
+    <div class="pattern-card">
+      <div class="pattern-title">2-2 手伝いを申し出る表現（主動協助）</div>
+      <div class="pattern-item">
+        <span>【話題引出】〜のこと、何か考えていますか。</span>
+        <button class="btn-action" onclick="speakText('休みの日のこと、何か考えていますか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【申し出】もしよかったら、一緒に〜しませんか。</span>
+        <button class="btn-action" onclick="speakText('もしよかったら、一緒に行きませんか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【遠慮への返し】大丈夫です。私も〜たかったので。</span>
+        <button class="btn-action" onclick="speakText('大丈夫です。私も行ってみたかったので、ちょうどいい機会です。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【返し】お互い様です。</span>
+        <button class="btn-action" onclick="speakText('お互い様です。')">🔊 示範</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: Can-Do 自我評價 (講義 p.12) -->
+  <div id="tab-rubric" style="display: none;">
+    <table class="table-eval">
+      <thead>
+        <tr>
+          <th>自我評估項目 (CAN-DO)</th>
+          <th style="width: 140px;">評分 (0:未 / 1:部分 / 2:良好)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>場面①：理由を具体的に説明できた（能具體說明突發事由）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r1" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r1" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r1" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面①：代替の日時を提案できた（能主動提出替代時間）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r2" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r2" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r2" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面①：相手への配慮の言葉を入れられた（能體貼對方不便並致歉）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r3" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r3" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r3" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面②：相手の不安を聞き出せた（能引導對方說出一人的不安）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r4" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r4" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r4" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面②：自分から手伝いを申し出られた（能主動提議陪同或協助）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r5" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r5" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r5" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面②：押しつけにならない表現を使えた（以「我也想去」化解對方客氣）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r6" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r6" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r6" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>二場面を通して自然な人間関係を保てた（兩個情境流暢承接互動自然）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r7" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r7" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r7" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // 劇本資料庫（完整對應講義設定）
+  const scenarios = {
+    basic: {
+      title: "基本版：配音練習 ＋ 九份",
+      desc: "場面①：陳さん因日語課的「動畫配音練習」必須將週三拍攝討論改為週五下午 3:00。<br>場面②：週五咖啡廳，鈴木さん想去九份拍攝給日本朋友看，但因交通與語言感到不安，陳さん主動提議同行。",
+      dialogues: [
+        { scene: "場面① 予定変更の許可を求める（週三前的電話或聯繫）" },
+        { speaker: "陳", text: "鈴木さん、今、少し話してもいいですか。" },
+        { speaker: "鈴木", text: "はい、大丈夫です。どうしましたか。" },
+        { speaker: "陳", text: "来週の水曜日の撮影の相談のことなんですが、少しお願いがあります。" },
+        { speaker: "鈴木", text: "水曜日の午後三時からですよね。何かありましたか。" },
+        { speaker: "陳", text: "はい。実は、その日の午後に、日本語会話の授業のアフレコ発表に向けた最後の練習が入ってしまったんです。" },
+        { speaker: "鈴木", text: "アフレコの練習ですか。" },
+        { speaker: "陳", text: "はい。日本のアニメの一場面を選んで、登場人物のせりふを自分たちで吹き替える発表なんです。もうすぐ本番なので、グループのメンバー全員で最後に合わせることになりました。でも、その日の午後しか時間が合わなかったんです。" },
+        { speaker: "鈴木", text: "そうなんですね。それは大変ですね。" },
+        { speaker: "陳", text: "本当にすみません。それで、こちらの都合で申し訳ないんですが、相談の日にちを金曜日に変更させてもらえませんか。" },
+        { speaker: "鈴木", text: "金曜日ですか。時間は同じですか。" },
+        { speaker: "陳", text: "もし鈴木さんの都合がよければ、時間も同じ午後三時から五時はどうでしょうか。" },
+        { speaker: "鈴木", text: "金曜日の午後三時ですね。少し確認しますね。……はい、大丈夫です。" },
+        { speaker: "陳", text: "ありがとうございます。急に変更をお願いしてしまって、すみません。" },
+        { speaker: "鈴木", text: "いえいえ。アフレコの練習なら仕方ないですよ。面白そうですね。" },
+        { speaker: "陳", text: "はい、楽しいんですけど、なかなか難しいんです。発音や感情の表現が、自分が思っているようにできなくて。" },
+        { speaker: "鈴木", text: "そうなんですか。今度、見せてください。" },
+        { speaker: "陳", text: "恥ずかしいですけど、機会があれば。では、金曜日の午後三時に、いつものカフェでお願いします。" },
+        { speaker: "鈴木", text: "はい。いつものカフェですね。金曜日までに、私も行きたい場所を少し調べておきますね。" },
+        { speaker: "陳", text: "ありがとうございます。では、金曜日によろしくお願いします。" },
+        { speaker: "鈴木", text: "こちらこそ、よろしくお願いします。アフレコの練習、頑張ってください。" },
+        { speaker: "陳", text: "ありがとうございます。" },
+
+        { scene: "場面② 手伝いを申し出る（金曜日の午後、いつものカフェ）" },
+        { speaker: "陳", text: "それで、鈴木さん、行きたい場所は決まりましたか。" },
+        { speaker: "鈴木", text: "はい。いろいろ調べて、キュウフンに行ってみたいと思っています。" },
+        { speaker: "陳", text: "キュウフンですか。" },
+        { speaker: "鈴木", text: "はい。山の上にあって、夜景がきれいで、古い町並みも残っている場所ですよね。日本の友達に台湾の雰囲気を見せたいので、ぴったりだと思いました。" },
+        { speaker: "陳", text: "そうなんですね。私も名前はよく聞きますし、写真も見たことがあります。" },
+        { speaker: "鈴木", text: "陳さんは、行ったことがありますか。" },
+        { speaker: "陳", text: "実は、まだ行ったことがないんです。台湾に住んでいるのに、恥ずかしいんですけど。" },
+        { speaker: "鈴木", text: "そうなんですか。意外です。" },
+        { speaker: "陳", text: "はい。一度行ってみたいと思っているんですが、なかなか機会がなくて。" },
+        { speaker: "鈴木", text: "そうなんですね。" },
+        { speaker: "陳", text: "それで、鈴木さんは、一人で行く予定ですか。" },
+        { speaker: "鈴木", text: "はい、そのつもりです。でも、正直に言うと、少し不安なんです。バスの乗り方や、現地での移動が、よくわかりません。中国語もあまりわからないので、何か聞かれたときに困るかもしれません。" },
+        { speaker: "陳", text: "ああ、初めての場所だと、そうですよね。" },
+        { speaker: "鈴木", text: "はい。それに、夜景を撮りたいので、帰りが遅くなります。一人で帰るのも、少し心配です。" },
+        { speaker: "陳", text: "それなら、もしよかったら、一緒に行きませんか。" },
+        { speaker: "鈴木", text: "えっ、本当にいいんですか。" },
+        { speaker: "陳", text: "はい。私もずっと行ってみたかったので、ちょうどいい機会です。" },
+        { speaker: "鈴木", text: "助かります。でも、陳さんの時間を取ってしまいませんか。" },
+        { speaker: "陳", text: "大丈夫です。この前、相談の日にちを変更してもらって助かりましたし、私もキュウフンには行ってみたかったんです。だから、一緒に行けたら私もうれしいです。" },
+        { speaker: "鈴木", text: "ありがとうございます。では、お願いしてもいいですか。" },
+        { speaker: "陳", text: "もちろんです。バスの乗り方や、行き方は、私も一緒に調べます。中国語が必要な場面では、私が話しますね。" },
+        { speaker: "鈴木", text: "本当に助かります。陳さんのおかげで、安心して行けそうです。" },
+        { speaker: "陳", text: "いえいえ。鈴木さんもいつも私の日本語を直してくれますから。お互い様です。" },
+        { speaker: "鈴木", text: "では、何時ごろ出発するか、一緒に決めましょうか。" },
+        { speaker: "陳", text: "はい。夜景も撮りたいなら、午後早めに出発したほうがいいですね。" },
+        { speaker: "鈴木", text: "そうですね。詳しい計画を、今日一緒に立てましょう。" },
+        { speaker: "陳", text: "はい、そうしましょう。" }
+      ]
+    },
+    appA: {
+      title: "応用 A：地震防災発表 ＋ 北投溫泉",
+      desc: "場面①：陳さん因日語對話課的「活動 1 回顧發表（地震防災）」小組討論改為週五。<br>場面②：鈴木さん想去北投拍攝台灣溫泉文化，但不清楚景點精華且日文說明難懂，陳さん主動提議陪同散步。",
+      dialogues: [
+        { scene: "場面① 予定変更の許可を求める（防災発表の打ち合わせ）" },
+        { speaker: "陳", text: "鈴木さん、今、少し話してもいいですか。" },
+        { speaker: "鈴木", text: "はい、大丈夫ですよ。どうしましたか。" },
+        { speaker: "陳", text: "来週の水曜日の撮影の相談のことなんですが、急なお願いがあるんです。" },
+        { speaker: "鈴木", text: "水曜日の相談ですね。何かありましたか。" },
+        { speaker: "陳", text: "実は、その日の午後に、日本語の授業で「地震に備えろ」という発表の最終確認が入ってしまったんです。" },
+        { speaker: "鈴木", text: "地震への備えの発表ですか。台湾も地震が多いですから、とても大事な活動ですね。" },
+        { speaker: "陳", text: "そうなんです。避難方法の資料を全員で最終確認することになって、その日の午後しか全員の都合が合わなくて。" },
+        { speaker: "鈴木", text: "なるほど、そういうことでしたら仕方ないですね。" },
+        { speaker: "陳", text: "本当にこちらの都合で申し訳ないんですが、相談を金曜日の同じ時間に変更させてもらえませんか。" },
+        { speaker: "鈴木", text: "金曜日の午後三時ですね。大丈夫ですよ、空いています。" },
+        { speaker: "陳", text: "ありがとうございます！本当に助かります。" },
+
+        { scene: "場面② 手伝いを申し出る（北投の温泉文化撮影）" },
+        { speaker: "陳", text: "鈴木さん、今度の休みに撮りに行きたい場所は決まりましたか。" },
+        { speaker: "鈴木", text: "はい、ホクトウに行って、台湾の温泉文化を写真に撮りたいと思っているんです。" },
+        { speaker: "陳", text: "ホクトウですか！有名な温泉街ですね。" },
+        { speaker: "鈴木", text: "はい。でも、温泉街が広くて何を撮れば特色が伝わるか迷っていますし、現地での中国語の説明も一人だと理解できるか不安なんです。" },
+        { speaker: "陳", text: "それなら、もしよかったら一緒に行きましょうか。私も名前は知っていますが、ゆっくり歩いたことがなかったので、ちょうどいい機会です。" },
+        { speaker: "鈴木", text: "えっ、本当ですか？陳さんの時間を取ってしまって悪いです。" },
+        { speaker: "陳", text: "全然大丈夫です！この前予定を変えてもらったお礼もしたいですし、私にとってもいい気分転換になりますから。" },
+        { speaker: "鈴木", text: "ありがとうございます。陳さんが一緒だとすごく安心です！" }
+      ]
+    },
+    appB: {
+      title: "応用 B：朗讀劇籌備 ＋ 貓空纜車",
+      desc: "場面①：陳さん因日語課「幻燈片朗讀劇」討論分工，需將會議延至週五。<br>場面②：鈴木さん想去貓空拍纜車風景與茶藝館夜景，但擔心購票、回程末班纜車及中文溝通，陳さん熱情協助。",
+      dialogues: [
+        { scene: "場面① 予定変更の許可を求める（朗読劇の準備）" },
+        { speaker: "陳", text: "鈴木さん、今ちょっとお時間よろしいですか。" },
+        { speaker: "鈴木", text: "はい、大丈夫です。どうかしましたか。" },
+        { speaker: "陳", text: "実は、水曜日の午後にスライド朗読劇の台本合わせが急に入ってしまって。" },
+        { speaker: "鈴木", text: "朗読劇ですか！面白そうですね。どんな役をやるんですか。" },
+        { speaker: "陳", text: "まだ配役を決めている段階なんです。それで、水曜日しかメンバーが集まれなくて。" },
+        { speaker: "鈴木", text: "そういうことでしたら、発表準備を優先してください。" },
+        { speaker: "陳", text: "ご迷惑をおかけして本当にすみません。もしよければ、金曜日の午後三時に変更していただけないでしょうか。" },
+        { speaker: "鈴木", text: "金曜日ですね。はい、問題ありませんよ。" },
+
+        { scene: "場面② 手伝いを申し出る（マオコンのロープウェイ）" },
+        { speaker: "陳", text: "鈴木さん、撮影に行きたい観光地はどこか考えていますか。" },
+        { speaker: "鈴木", text: "マオコンに行って、ロープウェイからの景色やお茶の文化を撮りたいと思っています。" },
+        { speaker: "陳", text: "マオコン、自然が豊かで素敵ですね！" },
+        { speaker: "鈴木", text: "はい。ただ、ロープウェイの乗り場やチケットの買い方が不安ですし、夜景を撮ると帰りの最終便に間に合うかも心配で。" },
+        { speaker: "陳", text: "それでしたら、もしよかったら一緒に行きませんか。私もロープウェイに乗ってみたかったんです。" },
+        { speaker: "鈴木", text: "いいんですか？陳さんを付き合わせてしまって申し訳ないです。" },
+        { speaker: "陳", text: "お互い様ですよ！いつも日本語を教えてもらっていますし、一緒に台湾のお茶を楽しみましょう。" },
+        { speaker: "鈴木", text: "本当に頼りになります。よろしくお願いします！" }
+      ]
+    }
+  };
+
+  let currentRate = 1.0;
+  let userRole = 'listen';
+  let speechSynth = window.speechSynthesis;
+  let naturalVoice = null;
+  let recognition = null;
+  let activeMicBtn = null;
+
+  // 嘗試載入最自然的日語語音 (Natural/Neural 語音優先)
+  function initVoices() {
+    const voices = speechSynth.getVoices();
+    const jaVoices = voices.filter(v => v.lang.startsWith('ja') || v.lang.replace('_', '-').includes('ja-JP'));
+    
+    // 依優先順序挑選最佳語音 (微軟 Natural、Google 日本語、Apple Kyoko 等)
+    naturalVoice = jaVoices.find(v => v.name.includes('Natural') || v.name.includes('Online'))
+                || jaVoices.find(v => v.name.includes('Google') || v.name.includes('Neural'))
+                || jaVoices.find(v => v.name.includes('Kyoko') || v.name.includes('Otoya'))
+                || jaVoices[0] || null;
+  }
+
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = initVoices;
+    initVoices();
+  }
+
+  // 初始化語音辨識 (Web Speech API)
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+      const spokenText = event.results[0][0].transcript;
+      if (activeMicBtn) {
+        evaluatePronunciation(activeMicBtn, spokenText);
+      }
+    };
+
+    recognition.onerror = function() {
+      stopMic();
+    };
+
+    recognition.onend = function() {
+      stopMic();
+    };
+  }
+
+  function stopMic() {
+    if (activeMicBtn) {
+      activeMicBtn.classList.remove('recording');
+      activeMicBtn.innerHTML = '🎤 開口練習';
+      activeMicBtn = null;
+    }
+  }
+
+  // 評分演算法（字元重疊相似度）
+  function evaluatePronunciation(btn, spoken) {
+    const expected = btn.getAttribute('data-target');
+    const badge = btn.parentElement.querySelector('.score-badge');
+    
+    // 簡單相似度比對
+    const cleanSpoken = spoken.replace(/[、。！？\s]/g, '');
+    const cleanTarget = expected.replace(/[、。！？\s]/g, '');
+    
+    let matchCount = 0;
+    for (let char of cleanSpoken) {
+      if (cleanTarget.includes(char)) matchCount++;
+    }
+    const score = Math.min(100, Math.round((matchCount / Math.max(cleanTarget.length, 1)) * 100));
+
+    badge.style.display = 'inline-block';
+    if (score >= 70) {
+      badge.className = 'score-badge high';
+      badge.innerText = `得分：${score}分！發音很棒 👍`;
+    } else if (score >= 40) {
+      badge.className = 'score-badge medium';
+      badge.innerText = `得分：${score}分 (聽到了:「${spoken}」)`;
+    } else {
+      badge.className = 'score-badge low';
+      badge.innerText = `得分：${score}分 (請再試一次)`;
+    }
+  }
+
+  // 發音播放函式
+  function speakText(text, callback) {
+    if (!('speechSynthesis' in window)) {
+      alert('您的瀏覽器不支援發音功能，建議使用 Chrome 或 Edge。');
+      return;
+    }
+    speechSynth.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    utterance.rate = currentRate;
+    if (naturalVoice) {
+      utterance.voice = naturalVoice;
+    }
+    if (callback) {
+      utterance.onend = callback;
+    }
+    speechSynth.speak(utterance);
+  }
+
+  function updateRate(val) {
+    currentRate = parseFloat(val);
+    document.getElementById('rateLabel').innerText = `${val}x`;
+  }
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-dialogue').style.display = 'none';
+    document.getElementById('tab-patterns').style.display = 'none';
+    document.getElementById('tab-rubric').style.display = 'none';
+
+    if (tabId === 'dialogue') {
+      document.getElementById('tab-dialogue').style.display = 'block';
+      event.currentTarget.classList.add('active');
+    } else if (tabId === 'patterns') {
+      document.getElementById('tab-patterns').style.display = 'block';
+      event.currentTarget.classList.add('active');
+    } else {
+      document.getElementById('tab-rubric').style.display = 'block';
+      event.currentTarget.classList.add('active');
+    }
+  }
+
+  function changeRole() {
+    userRole = document.getElementById('roleSelect').value;
+    renderDialogue();
+  }
+
+  function loadScenario() {
+    renderDialogue();
+  }
+
+  function renderDialogue() {
+    const scenarioKey = document.getElementById('scenarioSelect').value;
+    const data = scenarios[scenarioKey];
+    document.getElementById('scenarioSummary').innerHTML = data.desc;
+
+    const box = document.getElementById('dialogueBox');
+    box.innerHTML = '';
+
+    data.dialogues.forEach((item, index) => {
+      if (item.scene) {
+        const divider = document.createElement('div');
+        divider.className = 'scene-divider';
+        divider.innerHTML = `<span>${item.scene}</span>`;
+        box.appendChild(divider);
+        return;
+      }
+
+      const isChen = item.speaker === '陳';
+      const isUserTurn = (userRole === item.speaker);
+
+      const row = document.createElement('div');
+      row.className = `bubble-wrapper ${isChen ? 'chen' : 'suzuki'} ${isUserTurn ? 'current-turn' : ''}`;
+      row.id = `line-${index}`;
+
+      row.innerHTML = `
+        <div class="avatar">${item.speaker}</div>
+        <div class="bubble-card">
+          <div class="bubble-text">${item.text}</div>
+          <div class="bubble-actions">
+            <button class="btn-action" onclick="speakText('${item.text.replace(/'/g, "\\'")}')">
+              🔊 聆聽
+            </button>
+            <button class="btn-action mic" data-target="${item.text.replace(/'/g, "\\'")}" onclick="handleMic(this)">
+              🎤 開口練習
+            </button>
+            <span class="score-badge"></span>
+          </div>
+        </div>
+      `;
+      box.appendChild(row);
+    });
+  }
+
+  function handleMic(btn) {
+    if (!recognition) {
+      alert('您的瀏覽器未支援語音辨識或未授權麥克風，請使用 Chrome/Edge 並允許麥克風權限。');
+      return;
+    }
+
+    if (activeMicBtn === btn) {
+      recognition.stop();
+      stopMic();
+      return;
+    }
+
+    if (activeMicBtn) {
+      recognition.stop();
+      stopMic();
+    }
+
+    activeMicBtn = btn;
+    btn.classList.add('recording');
+    btn.innerHTML = '🛑 正在傾聽...';
+    try {
+      recognition.start();
+    } catch (e) {
+      recognition.stop();
+      setTimeout(() => recognition.start(), 200);
+    }
+  }
+
+  // 頁面初次載入
+  window.onload = function() {
+    initVoices();
+    renderDialogue();
+  };
+</script>
+
+</body>
+</html>ng="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日語會話二下｜予定変更の許可を求める・手伝いを申し出る</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-soft: #eff6ff;
+      --accent: #f97316;
+      --chen-bg: #e0f2fe;
+      --chen-border: #7dd3fc;
+      --suzuki-bg: #fef3c7;
+      --suzuki-border: #fde68a;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --success: #10b981;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Zen Maru Gothic', 'Noto Sans JP', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2563eb, #3b82f6);
+      color: white;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      background: #e2e8f0;
+      padding: 6px;
+      border-radius: var(--radius);
+    }
+
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Control Panel */
+    .panel {
+      background: var(--card-bg);
+      padding: 18px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+      margin-bottom: 20px;
+    }
+
+    .control-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .select-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    select, input[type="range"] {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .scenario-desc {
+      margin-top: 14px;
+      padding: 12px;
+      background: #f1f5f9;
+      border-left: 4px solid var(--primary);
+      border-radius: 6px;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    /* Dialogue List */
+    .dialogue-box {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .scene-divider {
+      text-align: center;
+      margin: 24px 0 10px;
+      position: relative;
+    }
+
+    .scene-divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: #cbd5e1;
+      z-index: 1;
+    }
+
+    .scene-divider span {
+      background: var(--bg);
+      position: relative;
+      z-index: 2;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #475569;
+      border: 1px solid #cbd5e1;
+    }
+
+    .bubble-wrapper {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+    }
+
+    .bubble-wrapper.chen {
+      flex-direction: row;
+    }
+
+    .bubble-wrapper.suzuki {
+      flex-direction: row-reverse;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .chen .avatar {
+      background: #0284c7;
+      color: white;
+    }
+
+    .suzuki .avatar {
+      background: #d97706;
+      color: white;
+    }
+
+    .bubble-card {
+      max-width: 78%;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: white;
+      border: 1.5px solid transparent;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      position: relative;
+    }
+
+    .chen .bubble-card {
+      background: var(--chen-bg);
+      border-color: var(--chen-border);
+      border-top-left-radius: 4px;
+    }
+
+    .suzuki .bubble-card {
+      background: var(--suzuki-bg);
+      border-color: var(--suzuki-border);
+      border-top-right-radius: 4px;
+    }
+
+    .bubble-text {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .bubble-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    .btn-action {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+
+    .btn-action:hover {
+      background: #f1f5f9;
+      transform: translateY(-1px);
+    }
+
+    .btn-action.mic.recording {
+      background: #ef4444;
+      color: white;
+      border-color: #ef4444;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+      70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    .score-badge {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .score-badge.high { display: inline-block; background: #dcfce7; color: #15803d; }
+    .score-badge.medium { display: inline-block; background: #fef9c3; color: #854d0e; }
+    .score-badge.low { display: inline-block; background: #fee2e2; color: #991b1b; }
+
+    /* Highlight Active Speaking Bubble */
+    .bubble-wrapper.current-turn .bubble-card {
+      border: 2px solid var(--primary);
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.35);
+    }
+
+    /* Patterns & Evaluation tab */
+    .pattern-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .pattern-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+      border-bottom: 1.5px solid #f1f5f9;
+      padding-bottom: 4px;
+    }
+
+    .pattern-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      font-size: 0.92rem;
+    }
+
+    .table-eval {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    .table-eval th, .table-eval td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.9rem;
+    }
+
+    .table-eval th {
+      background: #f8fafc;
+      font-weight: 700;
+    }
+
+    .rating-options {
+      display: flex;
+      gap: 8px;
+    }
+
+    .rating-label {
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>日語會話二下『会話に挑戦（中級前期）応用編』</h1>
+  <p>單元 12・15 予定変更の許可を求める／手伝いを申し出る</p>
+</header>
+
+<div class="container">
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('dialogue')">💬 互動對話練習</button>
+    <button class="tab-btn" onclick="switchTab('patterns')">🔑 關鍵句型集</button>
+    <button class="tab-btn" onclick="switchTab('rubric')">📝 自我檢核表 (Can-Do)</button>
+  </div>
+
+  <!-- TAB 1: 對話練習區 -->
+  <div id="tab-dialogue">
+    <div class="panel">
+      <div class="control-row">
+        <div class="select-group">
+          <label>情境劇本：</label>
+          <select id="scenarioSelect" onchange="loadScenario()">
+            <option value="basic">基本版：配音練習 ＋ 九份</option>
+            <option value="appA">應用 A：地震防災發表 ＋ 北投溫泉</option>
+            <option value="appB">應用 B：朗讀劇籌備 ＋ 貓空纜車</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <label>練習模式：</label>
+          <select id="roleSelect" onchange="changeRole()">
+            <option value="listen">🎧 聆聽與跟讀模式 (全部播放)</option>
+            <option value="陳">🙋 我扮演 陳さん (對方扮演 鈴木)</option>
+            <option value="鈴木">🙋 我扮演 鈴木さん (對方扮演 陳)</option>
+          </select>
+        </div>
+
+        <div class="select-group">
+          <label>語速：</label>
+          <input type="range" id="rateRange" min="0.7" max="1.2" step="0.1" value="1.0" oninput="updateRate(this.value)">
+          <span id="rateLabel">1.0x</span>
+        </div>
+      </div>
+
+      <div class="scenario-desc" id="scenarioSummary">
+        載入中...
+      </div>
+    </div>
+
+    <!-- 對話內容 -->
+    <div class="dialogue-box" id="dialogueBox"></div>
+  </div>
+
+  <!-- TAB 2: 關鍵句型庫 -->
+  <div id="tab-patterns" style="display: none;">
+    <div class="pattern-card">
+      <div class="pattern-title">2-1 予定変更の許可を求める表現（改期請求）</div>
+      <div class="pattern-item">
+        <span>【前置き】今、少し話してもいいですか。</span>
+        <button class="btn-action" onclick="speakText('今、少し話してもいいですか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【前置き】ちょっとお願いがあります。</span>
+        <button class="btn-action" onclick="speakText('ちょっとお願いがあります。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【理由】実は、〜が入ってしまったんです。</span>
+        <button class="btn-action" onclick="speakText('実は、用事が入ってしまったんです。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【依頼】〜を〜に変更させてもらえませんか。</span>
+        <button class="btn-action" onclick="speakText('相談の日にちを金曜日に変更させてもらえませんか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【配慮】こちらの都合で申し訳ないんですが…</span>
+        <button class="btn-action" onclick="speakText('こちらの都合で申し訳ないんですが、')">🔊 示範</button>
+      </div>
+    </div>
+
+    <div class="pattern-card">
+      <div class="pattern-title">2-2 手伝いを申し出る表現（主動協助）</div>
+      <div class="pattern-item">
+        <span>【話題引出】〜のこと、何か考えていますか。</span>
+        <button class="btn-action" onclick="speakText('休みの日のこと、何か考えていますか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【申し出】もしよかったら、一緒に〜しませんか。</span>
+        <button class="btn-action" onclick="speakText('もしよかったら、一緒に行きませんか。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【遠慮への返し】大丈夫です。私も〜たかったので。</span>
+        <button class="btn-action" onclick="speakText('大丈夫です。私も行ってみたかったので、ちょうどいい機会です。')">🔊 示範</button>
+      </div>
+      <div class="pattern-item">
+        <span>【返し】お互い様です。</span>
+        <button class="btn-action" onclick="speakText('お互い様です。')">🔊 示範</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: Can-Do 自我評價 (講義 p.12) -->
+  <div id="tab-rubric" style="display: none;">
+    <table class="table-eval">
+      <thead>
+        <tr>
+          <th>自我評估項目 (CAN-DO)</th>
+          <th style="width: 140px;">評分 (0:未 / 1:部分 / 2:良好)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>場面①：理由を具体的に説明できた（能具體說明突發事由）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r1" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r1" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r1" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面①：代替の日時を提案できた（能主動提出替代時間）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r2" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r2" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r2" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面①：相手への配慮の言葉を入れられた（能體貼對方不便並致歉）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r3" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r3" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r3" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面②：相手の不安を聞き出せた（能引導對方說出一人的不安）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r4" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r4" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r4" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面②：自分から手伝いを申し出られた（能主動提議陪同或協助）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r5" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r5" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r5" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>場面②：押しつけにならない表現を使えた（以「我也想去」化解對方客氣）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r6" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r6" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r6" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>二場面を通して自然な人間関係を保てた（兩個情境流暢承接互動自然）</td>
+          <td>
+            <div class="rating-options">
+              <label class="rating-label"><input type="radio" name="r7" value="0"> 0</label>
+              <label class="rating-label"><input type="radio" name="r7" value="1"> 1</label>
+              <label class="rating-label"><input type="radio" name="r7" value="2" checked> 2</label>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // 劇本資料庫（完整對應講義設定）
+  const scenarios = {
+    basic: {
+      title: "基本版：配音練習 ＋ 九份",
+      desc: "場面①：陳さん因日語課的「動畫配音練習」必須將週三拍攝討論改為週五下午 3:00。<br>場面②：週五咖啡廳，鈴木さん想去九份拍攝給日本朋友看，但因交通與語言感到不安，陳さん主動提議同行。",
+      dialogues: [
+        { scene: "場面① 予定変更の許可を求める（週三前的電話或聯繫）" },
+        { speaker: "陳", text: "鈴木さん、今、少し話してもいいですか。" },
+        { speaker: "鈴木", text: "はい、大丈夫です。どうしましたか。" },
+        { speaker: "陳", text: "来週の水曜日の撮影の相談のことなんですが、少しお願いがあります。" },
+        { speaker: "鈴木", text: "水曜日の午後三時からですよね。何かありましたか。" },
+        { speaker: "陳", text: "はい。実は、その日の午後に、日本語会話の授業のアフレコ発表に向けた最後の練習が入ってしまったんです。" },
+        { speaker: "鈴木", text: "アフレコの練習ですか。" },
+        { speaker: "陳", text: "はい。日本のアニメの一場面を選んで、登場人物のせりふを自分たちで吹き替える発表なんです。もうすぐ本番なので、グループのメンバー全員で最後に合わせることになりました。でも、その日の午後しか時間が合わなかったんです。" },
+        { speaker: "鈴木", text: "そうなんですね。それは大変ですね。" },
+        { speaker: "陳", text: "本当にすみません。それで、こちらの都合で申し訳ないんですが、相談の日にちを金曜日に変更させてもらえませんか。" },
+        { speaker: "鈴木", text: "金曜日ですか。時間は同じですか。" },
+        { speaker: "陳", text: "もし鈴木さんの都合がよければ、時間も同じ午後三時から五時はどうでしょうか。" },
+        { speaker: "鈴木", text: "金曜日の午後三時ですね。少し確認しますね。……はい、大丈夫です。" },
+        { speaker: "陳", text: "ありがとうございます。急に変更をお願いしてしまって、すみません。" },
+        { speaker: "鈴木", text: "いえいえ。アフレコの練習なら仕方ないですよ。面白そうですね。" },
+        { speaker: "陳", text: "はい、楽しいんですけど、なかなか難しいんです。発音や感情の表現が、自分が思っているようにできなくて。" },
+        { speaker: "鈴木", text: "そうなんですか。今度、見せてください。" },
+        { speaker: "陳", text: "恥ずかしいですけど、機会があれば。では、金曜日の午後三時に、いつものカフェでお願いします。" },
+        { speaker: "鈴木", text: "はい。いつものカフェですね。金曜日までに、私も行きたい場所を少し調べておきますね。" },
+        { speaker: "陳", text: "ありがとうございます。では、金曜日によろしくお願いします。" },
+        { speaker: "鈴木", text: "こちらこそ、よろしくお願いします。アフレコの練習、頑張ってください。" },
+        { speaker: "陳", text: "ありがとうございます。" },
+
+        { scene: "場面② 手伝いを申し出る（金曜日の午後、いつものカフェ）" },
+        { speaker: "陳", text: "それで、鈴木さん、行きたい場所は決まりましたか。" },
+        { speaker: "鈴木", text: "はい。いろいろ調べて、キュウフンに行ってみたいと思っています。" },
+        { speaker: "陳", text: "キュウフンですか。" },
+        { speaker: "鈴木", text: "はい。山の上にあって、夜景がきれいで、古い町並みも残っている場所ですよね。日本の友達に台湾の雰囲気を見せたいので、ぴったりだと思いました。" },
+        { speaker: "陳", text: "そうなんですね。私も名前はよく聞きますし、写真も見たことがあります。" },
+        { speaker: "鈴木", text: "陳さんは、行ったことがありますか。" },
+        { speaker: "陳", text: "実は、まだ行ったことがないんです。台湾に住んでいるのに、恥ずかしいんですけど。" },
+        { speaker: "鈴木", text: "そうなんですか。意外です。" },
+        { speaker: "陳", text: "はい。一度行ってみたいと思っているんですが、なかなか機会がなくて。" },
+        { speaker: "鈴木", text: "そうなんですね。" },
+        { speaker: "陳", text: "それで、鈴木さんは、一人で行く予定ですか。" },
+        { speaker: "鈴木", text: "はい、そのつもりです。でも、正直に言うと、少し不安なんです。バスの乗り方や、現地での移動が、よくわかりません。中国語もあまりわからないので、何か聞かれたときに困るかもしれません。" },
+        { speaker: "陳", text: "ああ、初めての場所だと、そうですよね。" },
+        { speaker: "鈴木", text: "はい。それに、夜景を撮りたいので、帰りが遅くなります。一人で帰るのも、少し心配です。" },
+        { speaker: "陳", text: "それなら、もしよかったら、一緒に行きませんか。" },
+        { speaker: "鈴木", text: "えっ、本当にいいんですか。" },
+        { speaker: "陳", text: "はい。私もずっと行ってみたかったので、ちょうどいい機会です。" },
+        { speaker: "鈴木", text: "助かります。でも、陳さんの時間を取ってしまいませんか。" },
+        { speaker: "陳", text: "大丈夫です。この前、相談の日にちを変更してもらって助かりましたし、私もキュウフンには行ってみたかったんです。だから、一緒に行けたら私もうれしいです。" },
+        { speaker: "鈴木", text: "ありがとうございます。では、お願いしてもいいですか。" },
+        { speaker: "陳", text: "もちろんです。バスの乗り方や、行き方は、私も一緒に調べます。中国語が必要な場面では、私が話しますね。" },
+        { speaker: "鈴木", text: "本当に助かります。陳さんのおかげで、安心して行けそうです。" },
+        { speaker: "陳", text: "いえいえ。鈴木さんもいつも私の日本語を直してくれますから。お互い様です。" },
+        { speaker: "鈴木", text: "では、何時ごろ出発するか、一緒に決めましょうか。" },
+        { speaker: "陳", text: "はい。夜景も撮りたいなら、午後早めに出発したほうがいいですね。" },
+        { speaker: "鈴木", text: "そうですね。詳しい計画を、今日一緒に立てましょう。" },
+        { speaker: "陳", text: "はい、そうしましょう。" }
+      ]
+    },
+    appA: {
+      title: "応用 A：地震防災発表 ＋ 北投溫泉",
+      desc: "場面①：陳さん因日語對話課的「活動 1 回顧發表（地震防災）」小組討論改為週五。<br>場面②：鈴木さん想去北投拍攝台灣溫泉文化，但不清楚景點精華且日文說明難懂，陳さん主動提議陪同散步。",
+      dialogues: [
+        { scene: "場面① 予定変更の許可を求める（防災発表の打ち合わせ）" },
+        { speaker: "陳", text: "鈴木さん、今、少し話してもいいですか。" },
+        { speaker: "鈴木", text: "はい、大丈夫ですよ。どうしましたか。" },
+        { speaker: "陳", text: "来週の水曜日の撮影の相談のことなんですが、急なお願いがあるんです。" },
+        { speaker: "鈴木", text: "水曜日の相談ですね。何かありましたか。" },
+        { speaker: "陳", text: "実は、その日の午後に、日本語の授業で「地震に備えろ」という発表の最終確認が入ってしまったんです。" },
+        { speaker: "鈴木", text: "地震への備えの発表ですか。台湾も地震が多いですから、とても大事な活動ですね。" },
+        { speaker: "陳", text: "そうなんです。避難方法の資料を全員で最終確認することになって、その日の午後しか全員の都合が合わなくて。" },
+        { speaker: "鈴木", text: "なるほど、そういうことでしたら仕方ないですね。" },
+        { speaker: "陳", text: "本当にこちらの都合で申し訳ないんですが、相談を金曜日の同じ時間に変更させてもらえませんか。" },
+        { speaker: "鈴木", text: "金曜日の午後三時ですね。大丈夫ですよ、空いています。" },
+        { speaker: "陳", text: "ありがとうございます！本当に助かります。" },
+
+        { scene: "場面② 手伝いを申し出る（北投の温泉文化撮影）" },
+        { speaker: "陳", text: "鈴木さん、今度の休みに撮りに行きたい場所は決まりましたか。" },
+        { speaker: "鈴木", text: "はい、ホクトウに行って、台湾の温泉文化を写真に撮りたいと思っているんです。" },
+        { speaker: "陳", text: "ホクトウですか！有名な温泉街ですね。" },
+        { speaker: "鈴木", text: "はい。でも、温泉街が広くて何を撮れば特色が伝わるか迷っていますし、現地での中国語の説明も一人だと理解できるか不安なんです。" },
+        { speaker: "陳", text: "それなら、もしよかったら一緒に行きましょうか。私も名前は知っていますが、ゆっくり歩いたことがなかったので、ちょうどいい機会です。" },
+        { speaker: "鈴木", text: "えっ、本当ですか？陳さんの時間を取ってしまって悪いです。" },
+        { speaker: "陳", text: "全然大丈夫です！この前予定を変えてもらったお礼もしたいですし、私にとってもいい気分転換になりますから。" },
+        { speaker: "鈴木", text: "ありがとうございます。陳さんが一緒だとすごく安心です！" }
+      ]
+    },
+    appB: {
+      title: "応用 B：朗讀劇籌備 ＋ 貓空纜車",
+      desc: "場面①：陳さん因日語課「幻燈片朗讀劇」討論分工，需將會議延至週五。<br>場面②：鈴木さん想去貓空拍纜車風景與茶藝館夜景，但擔心購票、回程末班纜車及中文溝通，陳さん熱情協助。",
+      dialogues: [
+        { scene: "場面① 予定変更の許可を求める（朗読劇の準備）" },
+        { speaker: "陳", text: "鈴木さん、今ちょっとお時間よろしいですか。" },
+        { speaker: "鈴木", text: "はい、大丈夫です。どうかしましたか。" },
+        { speaker: "陳", text: "実は、水曜日の午後にスライド朗読劇の台本合わせが急に入ってしまって。" },
+        { speaker: "鈴木", text: "朗読劇ですか！面白そうですね。どんな役をやるんですか。" },
+        { speaker: "陳", text: "まだ配役を決めている段階なんです。それで、水曜日しかメンバーが集まれなくて。" },
+        { speaker: "鈴木", text: "そういうことでしたら、発表準備を優先してください。" },
+        { speaker: "陳", text: "ご迷惑をおかけして本当にすみません。もしよければ、金曜日の午後三時に変更していただけないでしょうか。" },
+        { speaker: "鈴木", text: "金曜日ですね。はい、問題ありませんよ。" },
+
+        { scene: "場面② 手伝いを申し出る（マオコンのロープウェイ）" },
+        { speaker: "陳", text: "鈴木さん、撮影に行きたい観光地はどこか考えていますか。" },
+        { speaker: "鈴木", text: "マオコンに行って、ロープウェイからの景色やお茶の文化を撮りたいと思っています。" },
+        { speaker: "陳", text: "マオコン、自然が豊かで素敵ですね！" },
+        { speaker: "鈴木", text: "はい。ただ、ロープウェイの乗り場やチケットの買い方が不安ですし、夜景を撮ると帰りの最終便に間に合うかも心配で。" },
+        { speaker: "陳", text: "それでしたら、もしよかったら一緒に行きませんか。私もロープウェイに乗ってみたかったんです。" },
+        { speaker: "鈴木", text: "いいんですか？陳さんを付き合わせてしまって申し訳ないです。" },
+        { speaker: "陳", text: "お互い様ですよ！いつも日本語を教えてもらっていますし、一緒に台湾のお茶を楽しみましょう。" },
+        { speaker: "鈴木", text: "本当に頼りになります。よろしくお願いします！" }
+      ]
+    }
+  };
+
+  let currentRate = 1.0;
+  let userRole = 'listen';
+  let speechSynth = window.speechSynthesis;
+  let naturalVoice = null;
+  let recognition = null;
+  let activeMicBtn = null;
+
+  // 嘗試載入最自然的日語語音 (Natural/Neural 語音優先)
+  function initVoices() {
+    const voices = speechSynth.getVoices();
+    const jaVoices = voices.filter(v => v.lang.startsWith('ja') || v.lang.replace('_', '-').includes('ja-JP'));
+    
+    // 依優先順序挑選最佳語音 (微軟 Natural、Google 日本語、Apple Kyoko 等)
+    naturalVoice = jaVoices.find(v => v.name.includes('Natural') || v.name.includes('Online'))
+                || jaVoices.find(v => v.name.includes('Google') || v.name.includes('Neural'))
+                || jaVoices.find(v => v.name.includes('Kyoko') || v.name.includes('Otoya'))
+                || jaVoices[0] || null;
+  }
+
+  if ('speechSynthesis' in window) {
+    speechSynthesis.onvoiceschanged = initVoices;
+    initVoices();
+  }
+
+  // 初始化語音辨識 (Web Speech API)
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (SpeechRecognition) {
+    recognition = new SpeechRecognition();
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+      const spokenText = event.results[0][0].transcript;
+      if (activeMicBtn) {
+        evaluatePronunciation(activeMicBtn, spokenText);
+      }
+    };
+
+    recognition.onerror = function() {
+      stopMic();
+    };
+
+    recognition.onend = function() {
+      stopMic();
+    };
+  }
+
+  function stopMic() {
+    if (activeMicBtn) {
+      activeMicBtn.classList.remove('recording');
+      activeMicBtn.innerHTML = '🎤 開口練習';
+      activeMicBtn = null;
+    }
+  }
+
+  // 評分演算法（字元重疊相似度）
+  function evaluatePronunciation(btn, spoken) {
+    const expected = btn.getAttribute('data-target');
+    const badge = btn.parentElement.querySelector('.score-badge');
+    
+    // 簡單相似度比對
+    const cleanSpoken = spoken.replace(/[、。！？\s]/g, '');
+    const cleanTarget = expected.replace(/[、。！？\s]/g, '');
+    
+    let matchCount = 0;
+    for (let char of cleanSpoken) {
+      if (cleanTarget.includes(char)) matchCount++;
+    }
+    const score = Math.min(100, Math.round((matchCount / Math.max(cleanTarget.length, 1)) * 100));
+
+    badge.style.display = 'inline-block';
+    if (score >= 70) {
+      badge.className = 'score-badge high';
+      badge.innerText = `得分：${score}分！發音很棒 👍`;
+    } else if (score >= 40) {
+      badge.className = 'score-badge medium';
+      badge.innerText = `得分：${score}分 (聽到了:「${spoken}」)`;
+    } else {
+      badge.className = 'score-badge low';
+      badge.innerText = `得分：${score}分 (請再試一次)`;
+    }
+  }
+
+  // 發音播放函式
+  function speakText(text, callback) {
+    if (!('speechSynthesis' in window)) {
+      alert('您的瀏覽器不支援發音功能，建議使用 Chrome 或 Edge。');
+      return;
+    }
+    speechSynth.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ja-JP';
+    utterance.rate = currentRate;
+    if (naturalVoice) {
+      utterance.voice = naturalVoice;
+    }
+    if (callback) {
+      utterance.onend = callback;
+    }
+    speechSynth.speak(utterance);
+  }
+
+  function updateRate(val) {
+    currentRate = parseFloat(val);
+    document.getElementById('rateLabel').innerText = `${val}x`;
+  }
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-dialogue').style.display = 'none';
+    document.getElementById('tab-patterns').style.display = 'none';
+    document.getElementById('tab-rubric').style.display = 'none';
+
+    if (tabId === 'dialogue') {
+      document.getElementById('tab-dialogue').style.display = 'block';
+      event.currentTarget.classList.add('active');
+    } else if (tabId === 'patterns') {
+      document.getElementById('tab-patterns').style.display = 'block';
+      event.currentTarget.classList.add('active');
+    } else {
+      document.getElementById('tab-rubric').style.display = 'block';
+      event.currentTarget.classList.add('active');
+    }
+  }
+
+  function changeRole() {
+    userRole = document.getElementById('roleSelect').value;
+    renderDialogue();
+  }
+
+  function loadScenario() {
+    renderDialogue();
+  }
+
+  function renderDialogue() {
+    const scenarioKey = document.getElementById('scenarioSelect').value;
+    const data = scenarios[scenarioKey];
+    document.getElementById('scenarioSummary').innerHTML = data.desc;
+
+    const box = document.getElementById('dialogueBox');
+    box.innerHTML = '';
+
+    data.dialogues.forEach((item, index) => {
+      if (item.scene) {
+        const divider = document.createElement('div');
+        divider.className = 'scene-divider';
+        divider.innerHTML = `<span>${item.scene}</span>`;
+        box.appendChild(divider);
+        return;
+      }
+
+      const isChen = item.speaker === '陳';
+      const isUserTurn = (userRole === item.speaker);
+
+      const row = document.createElement('div');
+      row.className = `bubble-wrapper ${isChen ? 'chen' : 'suzuki'} ${isUserTurn ? 'current-turn' : ''}`;
+      row.id = `line-${index}`;
+
+      row.innerHTML = `
+        <div class="avatar">${item.speaker}</div>
+        <div class="bubble-card">
+          <div class="bubble-text">${item.text}</div>
+          <div class="bubble-actions">
+            <button class="btn-action" onclick="speakText('${item.text.replace(/'/g, "\\'")}')">
+              🔊 聆聽
+            </button>
+            <button class="btn-action mic" data-target="${item.text.replace(/'/g, "\\'")}" onclick="handleMic(this)">
+              🎤 開口練習
+            </button>
+            <span class="score-badge"></span>
+          </div>
+        </div>
+      `;
+      box.appendChild(row);
+    });
+  }
+
+  function handleMic(btn) {
+    if (!recognition) {
+      alert('您的瀏覽器未支援語音辨識或未授權麥克風，請使用 Chrome/Edge 並允許麥克風權限。');
+      return;
+    }
+
+    if (activeMicBtn === btn) {
+      recognition.stop();
+      stopMic();
+      return;
+    }
+
+    if (activeMicBtn) {
+      recognition.stop();
+      stopMic();
+    }
+
+    activeMicBtn = btn;
+    btn.classList.add('recording');
+    btn.innerHTML = '🛑 正在傾聽...';
+    try {
+      recognition.start();
+    } catch (e) {
+      recognition.stop();
+      setTimeout(() => recognition.start(), 200);
+    }
+  }
+
+  // 頁面初次載入
+  window.onload = function() {
+    initVoices();
+    renderDialogue();
+  };
+</script>
+
+</body>
+</html>
